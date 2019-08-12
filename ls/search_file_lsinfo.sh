@@ -166,7 +166,7 @@ function log() {
                 log_level_word="[-----]"
                 ;;
         esac
-        echo "${LOG_LEVEL_DEBUG}${message}"
+        echo "${log_level_word}${message}"
     fi
     return 0
 }
