@@ -8,7 +8,7 @@ readonly LOG_LEVEL_WARN=2
 readonly LOG_LEVEL_ERROR=3
 
 # ヘッダー
-readonly HEADER="ファイルパス・名\tファイル種別\tパーミッション\tパーミッション(8進数)\t所有権(ユーザ)\t所有権(グループ)\tファイルサイズ\tファイル更新日付\tファイル更新時刻\tファイル更新タイムゾーン"
+readonly HEADER="ファイルパス・名\\tファイル種別\\tパーミッション\\tパーミッション(8進数)\\t所有権(ユーザ)\\t所有権(グループ)\\tファイルサイズ\\tファイル更新日付\\tファイル更新時刻\\tファイル更新タイムゾーン"
 
 function search() {
     # 処理対象ディレクトリ
@@ -132,7 +132,7 @@ function convert_rwx_to_hex() {
 }
 
 function output() {
-    echo "${1}\t${2}\t${3}\t${4}\t${5}\t${6}\t${7}\t${8}\t${9}\t${10}" >> ${OUTPUT_DIR}${OUTPUT_FILE}
+    echo -e "${1}\\t${2}\\t${3}\\t${4}\\t${5}\\t${6}\\t${7}\\t${8}\\t${9}\\t${10}" >> ${OUTPUT_DIR}${OUTPUT_FILE}
     return 0
 }
 
@@ -202,13 +202,13 @@ OUTPUT_DIR="`pwd`/"
 OUTPUT_FILE="#search_file_lsinfo_${EXEC_DATE}.tsv"
 
 # 取得時刻を出力
-echo "取得時刻：\t${EXEC_DATE}" > ${OUTPUT_DIR}${OUTPUT_FILE}
+echo -e "取得時刻：\\t${EXEC_DATE}" > ${OUTPUT_DIR}${OUTPUT_FILE}
 
 # 基準ディレクトリを出力
-echo "基準ディレクトリ：\t${BASE_DIR}" >> ${OUTPUT_DIR}${OUTPUT_FILE}
+echo -e "基準ディレクトリ：\\t${BASE_DIR}" >> ${OUTPUT_DIR}${OUTPUT_FILE}
 
 # ヘッダーを出力
-echo ${HEADER} >> ${OUTPUT_DIR}${OUTPUT_FILE}
+echo -e ${HEADER} >> ${OUTPUT_DIR}${OUTPUT_FILE}
 
 # 探索処理呼び出し
 search "${BASE_DIR}"
