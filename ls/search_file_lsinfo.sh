@@ -150,15 +150,15 @@ function log() {
                 log_level_word="[DEBUG]"
                 ;;
 
-            "${LOG_LEVEL_DEBUG}")
+            "${LOG_LEVEL_INFO}")
                 log_level_word="[INFO ]"
                 ;;
 
-            "${LOG_LEVEL_DEBUG}")
+            "${LOG_LEVEL_WARN}")
                 log_level_word="[WARN ]"
                 ;;
 
-            "${LOG_LEVEL_DEBUG}")
+            "${LOG_LEVEL_ERROR}")
                 log_level_word="[ERROR]"
                 ;;
 
