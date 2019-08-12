@@ -199,7 +199,7 @@ log ${LOG_LEVEL_INFO} "探索を開始します。"
 # 出力ファイル作成
 EXEC_DATE=`date +%Y%m%d%H%M%S`
 OUTPUT_DIR="`pwd`/"
-OUTPUT_FILE="#search_file_lsinfo_${EXEC_DATE}.tsv"
+OUTPUT_FILE="_search_file_lsinfo_${EXEC_DATE}.tsv"
 
 # 取得時刻を出力
 echo -e "取得時刻：\\t${EXEC_DATE}" > ${OUTPUT_DIR}${OUTPUT_FILE}
