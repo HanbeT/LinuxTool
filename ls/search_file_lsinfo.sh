@@ -169,17 +169,25 @@ function log() {
                 log_level_word="[-----]"
                 ;;
         esac
-        echo "${log_level_word} ${message}"
+        LOG_MESSAGE="${LOG_MESSAGE}\\n${log_level_word} ${message}"
     fi
     return 0
 }
 
+function output_log() {
+    echo -e ${LOG_MESSAGE}
+    echo
+}
+
 EXIT_CODE=0
+
+LOG_MESSAGE=""
 
 # 引数チェック
 if [ $# -ne 1 ]; then
     log ${LOG_LEVEL_ERROR} "引数の数が間違っています。"
     log ${LOG_LEVEL_INFO} "  sh search_file_lsinfo.sh <target directory(absolute path)>"
+    output_log
     exit 90
 fi
 
@@ -189,6 +197,7 @@ BASE_DIR=$1
 # ディレクトリ存在チェック
 if [ ! -d "${BASE_DIR}" ]; then
     log ${LOG_LEVEL_ERROR} "指定されたディレクトリは存在しません。：${BASE_DIR}"
+    output_log
     exit 91
 fi
 
@@ -217,5 +226,7 @@ echo -e ${HEADER} >> ${OUTPUT_DIR}${OUTPUT_FILE}
 search "${BASE_DIR}"
 
 log ${LOG_LEVEL_INFO} "探索を終了しました。：${OUTPUT_DIR}${OUTPUT_FILE}"
+
+output_log
 
 exit "${EXIT_CODE}"
