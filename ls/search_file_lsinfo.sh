@@ -87,6 +87,8 @@ function search() {
 function convert_rwx_to_hex() {
     # rwx形式のパーミッション
     local rwx_permission=$1
+    # 処理対象
+    local target=$2
     # 8進数形式計算用パーミッション
     local tmp_hex_permission=0
     # 8進数形式のパーミッション
@@ -114,7 +116,7 @@ function convert_rwx_to_hex() {
                 ;;
 
             *)   # 未対応のファイル種別の場合
-                log ${LOG_LEVEL_WARN} "未対応のパーミッションが設定されています。：ファイル名=${dir_prefix}${filename}"
+                log ${LOG_LEVEL_WARN} "未対応のパーミッションが設定されています。：ファイル名=${target}"
                 EXIT_CODE=10
                 echo "---"
                 return 1
@@ -124,7 +126,7 @@ function convert_rwx_to_hex() {
         # パーミッションの対象が変更した場合(ループ変数が3の倍数の場合)、
         #  ・8進数用のパーミッションに計算後の結果を追加
         #  ・計算用パーミッションを初期化(0)
-        if [ $((i%3)) ]; then
+        if [ $((i%3)) -eq 0 ]; then
             hex_permission="${hex_permission}${tmp_hex_permission}"
             tmp_hex_permission=0
         fi
