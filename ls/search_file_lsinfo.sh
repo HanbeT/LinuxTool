@@ -31,7 +31,7 @@ function search() {
         # ls情報を取得
         #   対象ファイルのみ取得
         #   シンボリックリンクを除外
-        local ls_info=(`ls -la --full-time ${now_dir} | grep -E "\s${target}$|"\s${target}\s\->\s"`)
+        local ls_info=(`ls -la --full-time ${now_dir} | grep -E "\s${target}$|\s${target}\s\->\s"`)
 
         # パーミッション
         local permission=${ls_info[0]}
